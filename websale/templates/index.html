@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmware Sales</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Firmware Sales</h1>
+    </header>
+    <nav>
+        <!-- Tautan menu untuk berpindah ke halaman indeks -->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="#">Products</a>
+        <!-- Tautan menu untuk membuka aplikasi WhatsApp -->
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+    <div class="container" id="products-container">
+        <!-- Produk akan ditambahkan di sini oleh JavaScript -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Firmware Sales</p>
+    </footer>
+
+    <script>
+        var products = [
+            { id: 1, name: 'Canon Firmware Updatev1', price: 99, description: 'Device Model: Cannon X200\nVersion Number: v1.0\nRelease Date: May 15, 2023\nUpdates:\nImproved overall device performance.\nFixed minor bugs.\nEnhanced device stability.' },
+            { id: 2, name: 'Nikon Firmware Updatev2', price: 79, description: 'Device Model: Nikon D500\nVersion Number: v2.0\nRelease Date: June 20, 2023\nUpdates:\nEnhanced autofocus performance.\nAdded new shooting modes.\nImproved battery life.' },
+            { id: 3, name: 'Sony Firmware Updatev3', price: 129, description: 'Device Model: Sony A7III\nVersion Number: v3.0\nRelease Date: July 10, 2023\nUpdates:\nImproved image stabilization.\nFixed overheating issues.\nAdded support for new lenses.' },
+            { id: 4, name: 'Fujifilm Firmware Updatev4', price: 89, description: 'Device Model: Fujifilm X-T4\nVersion Number: v4.0\nRelease Date: August 5, 2023\nUpdates:\nAdded 4K video recording at 60fps.\nImproved face detection autofocus.\nEnhanced color accuracy.' },
+            { id: 5, name: 'Olympus Firmware Updatev5', price: 109, description: 'Device Model: Olympus OM-D E-M1 Mark III\nVersion Number: v5.0\nRelease Date: September 12, 2023\nUpdates:\nAdded high-res mode for stills.\nImproved weather sealing.\nEnhanced in-body stabilization.' },
+            { id: 26, name: 'Panasonic Firmware Updatev26', price: 119, description: 'Device Model: Panasonic Lumix GH5\nVersion Number: v26.0\nRelease Date: November 30, 2023\nUpdates:\nAdded support for ProRes RAW output.\nImproved autofocus performance.\nEnhanced video recording features.' },
+            { id: 27, name: 'Leica Firmware Updatev27', price: 139, description: 'Device Model: Leica SL2\nVersion Number: v27.0\nRelease Date: December 18, 2023\nUpdates:\nImproved image quality.\nEnhanced compatibility with accessories.\nAdded new creative shooting modes.' },
+            { id: 28, name: 'Pentax Firmware Updatev28', price: 69, description: 'Device Model: Pentax K-1 Mark II\nVersion Number: v28.0\nRelease Date: January 5, 2024\nUpdates:\nAdded pixel shift resolution mode.\nImproved low-light performance.\nEnhanced user interface.' },
+            { id: 29, name: 'Hasselblad Firmware Updatev29', price: 159, description: 'Device Model: Hasselblad X1D II 50C\nVersion Number: v29.0\nRelease Date: February 20, 2024\nUpdates:\nEnhanced autofocus accuracy.\nImproved compatibility with CFexpress cards.\nAdded new digital lens corrections.' },
+            { id: 30, name: 'Sigma Firmware Updatev30', price: 109, description: 'Device Model: Sigma fp\nVersion Number: v30.0\nRelease Date: March 10, 2024\nUpdates:\nAdded cinema DNG recording option.\nImproved video playback functionality.\nEnhanced autofocus performance.' }
+        ];
+
+        // Fungsi untuk menampilkan produk
+        function displayProducts() {
+            var container = document.getElementById('products-container');
+            products.forEach(function(product) {
+                var productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.innerHTML = `
+                    <img src="/static/update.png" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p><strong>Price:</strong> $${product.price}</p>
+                    <button onclick="displayPayPalForm(${product.price}, '${product.name}')">Buy Now</button>
+
+                `;
+                container.appendChild(productDiv);
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan produk
+        displayProducts();
+
+        // Fungsi untuk menampilkan formulir PayPal
+        function displayPayPalForm(price, productName) {
+    var form = document.createElement('form');
+    form.setAttribute('action', '{{ url_for("checkout", price=0) }}'.replace('0', price));
+    form.setAttribute('method', 'post');
+    form.innerHTML = `
+        <input type="hidden" name="price" value="${price}">
+        <input type="hidden" name="product" value="${productName}">
+    `;
+    document.body.appendChild(form);
+    form.submit();
+}
+
+        
+    </script>
+
+</body>
+</html>

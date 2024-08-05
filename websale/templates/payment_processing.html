@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing</title>
+    <link rel="stylesheet" href="/static/stylecss.css"> 
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/static/image.png" alt="Payment Logo" class="logo">
+            <h1 class="title">Payment Processing</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="payment-details">
+            <h2>Order Summary</h2>
+           
+            <img src="/static/imagesv1.jpg" >
+            {% if request.method == 'POST' %}
+                {% set price = request.form.get('price') %}
+                <p>Price: ${{ price }}</p>
+                {% set product = request.form.get('product') %}
+                <p>Product: {{ product }}</p>
+
+            {% endif %}
+            <!-- Add more details as needed -->
+        </div>
+        <div class="payment-form">
+            <h2>Payment Information</h2>
+            <p>Thank you for choosing us for your purchase!</p>
+            <p>Kindly proceed with your payment to complete the transaction.</p>
+
+            <a href="https://www.paypal.com/paypalme/my/profile" class="paypal-link">
+                <img src="/static/download.png" alt="PayPal Logo" class="logo-small">
+                Pay with PayPal
+            </a>
+            <h3>Upload Transaction Proof</h3>
+            <p>"Unlock Exclusive Content! Share your payment proof via WhatsApp to receive your exclusive download password and complete your transaction."</p>
+            <a href="https://wa.me/6282211124715?text=Hi%20saya%20telah%20menyelesaikan%20pembayaran%20dan%20melampirkan%20bukti%20pembayaran%20di%20sini." target="_blank" class="whatsapp-link">
+                <img src="/static/download.jpg" alt="WhatsApp Logo" class="logo-small">
+                Contact via WhatsApp
+            </a>
+        </div>
+        <form action="/download_link" method="POST">
+            <label for="password">Enter the password here to get the download link:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Payment Processing</p>
+    </footer>
+</body>
+</html>

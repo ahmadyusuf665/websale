@@ -1,0 +1,26 @@
+<!-- download_link.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Link</title>
+    <link rel="stylesheet" href="/static/stylecss.css"> 
+</head>
+<body>
+    <h1>Download Link</h1>
+    {% if access == True %}
+        <!-- Mengarahkan pengguna ke tautan unduhan Mega -->
+        <p>Download link: <a href="https://mega.nz/file/TAUTAN_UNDUHAN_ANDA">Download Here</a></p>
+    {% elif access == False %}
+        <p>Password incorrect. Please try again.</p>
+    {% else %}
+        <!-- Menampilkan form untuk memasukkan password jika belum ada akses -->
+        <form action="/download_link" method="POST">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+</body>
+</html>

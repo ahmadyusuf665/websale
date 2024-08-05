@@ -1,0 +1,40 @@
+* stylecss.css */
+/* Style untuk header */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style untuk container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style untuk judul */
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Style untuk paragraf */
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* CSS untuk logo */
+.logo {
+    width: 20px; /* Atur lebar logo */
+    height: auto; /* Biarkan tinggi mengikuti proporsi aslinya */
+    margin-right: 10px; /* Atur jarak kanan antara logo dan teks */
+}
+
+.payment-icons img {
+    width: 50px;
+    margin: 0 10px;
+}
